@@ -1,7 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Nav from "./Nav";
-import { Outlet } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -9,7 +7,11 @@ const Header = () => {
       <Link className="site-logo" to="/">
         #VanLife
       </Link>
-      <Nav />
+      <nav>
+        <Link to="/host">Host</Link>
+        <Link to="/about">About</Link>
+        <Link to="/vans">Vans</Link>
+      </nav>
     </header>
   );
 };
