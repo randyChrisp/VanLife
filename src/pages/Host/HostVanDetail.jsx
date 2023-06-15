@@ -1,9 +1,14 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { NavLink, Link, Outlet, useParams } from "react-router-dom";
 
 const HostVanDetail = () => {
+  const activeStyles = {
+    fontWeight: "bold",
+    textDecoration: "underline",
+    color: "#5647B7",
+  };
+
   const [hostVanDetail, setHostVanDetail] = useState(null);
   const params = useParams();
 
@@ -15,7 +20,6 @@ const HostVanDetail = () => {
     } catch (error) {
       console.log(error);
     }
-    console.log("Host van", hostVanDetail);
   }, [params.id]);
 
   return (
@@ -31,17 +35,33 @@ const HostVanDetail = () => {
               <i className={`van-type van-type-${hostVanDetail.type}`}>
                 {hostVanDetail.type}
               </i>
-              <h2>{hostVanDetail.name}</h2>
-              <p className="van-price">
-                <span>${hostVanDetail.price}</span>/day
-              </p>
-              <p>{hostVanDetail.description}</p>
+              <h3>{hostVanDetail.name}</h3>
+              <h4>${hostVanDetail.price}/day</h4>
             </div>
           </div>
         ) : (
           <h2>Loading...</h2>
         )}
       </div>
+      <nav className="host-van-detail-nav">
+        <NavLink
+          to="."
+          end
+          style={({ isActive }) => (isActive ? activeStyles : null)}>
+          Details
+        </NavLink>
+        <NavLink
+          to="pricing"
+          style={({ isActive }) => (isActive ? activeStyles : null)}>
+          Pricing
+        </NavLink>
+        <NavLink
+          to="photos"
+          style={({ isActive }) => (isActive ? activeStyles : null)}>
+          Photos
+        </NavLink>
+      </nav>
+      <Outlet />
     </section>
   );
 };
