@@ -12,7 +12,7 @@ const HostVanLayout = () => {
     <>
       <nav className="">
         <NavLink
-          to="/host/van/:id"
+          to="./"
           end
           style={({ isActive }) => (isActive ? activeStyles : null)}>
           Details
