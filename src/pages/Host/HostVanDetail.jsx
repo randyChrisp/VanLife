@@ -61,7 +61,7 @@ const HostVanDetail = () => {
           Photos
         </NavLink>
       </nav>
-      <Outlet />
+      <Outlet context={{ hostVanDetail }} />
     </section>
   );
 };
