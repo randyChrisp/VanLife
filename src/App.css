@@ -71,6 +71,12 @@ nav {
     display: flex;
 }
 
+.active-link {
+    font-weight: "bold";
+    text-decoration: "underline";
+    color: "#5647B7",
+}
+
 main {
     margin-bottom: 84px;
 }
@@ -159,8 +165,15 @@ footer {
 }
 
 /*** ABOUT PAGE ***/
+.about-page-container {
+    padding-inline: 23px;
+}
 .about-hero-image {
+    align-items: center;
     max-width: 100%;
+    padding-inline: 23px;
+    margin: auto;
+
 }
 
 .about-page-content {
