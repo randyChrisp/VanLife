@@ -6,7 +6,7 @@ const HostVanPricing = () => {
 
   return (
     <h3 className="host-van-price">
-      {hostVanDetail.price}
+      ${hostVanDetail.price}
       <span>/day</span>
     </h3>
   );

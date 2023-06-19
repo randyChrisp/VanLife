@@ -9,7 +9,7 @@ const HostVanDetail = () => {
     color: "#5647B7",
   };
 
-  const [hostVanDetail, setHostVanDetail] = useState(null);
+  const [hostVanDetail, setHostVanDetail] = useState({}); //Default was null and caused error, changed to empty object to resolve
   const params = useParams();
 
   useEffect(() => {
@@ -21,6 +21,8 @@ const HostVanDetail = () => {
       console.log(error);
     }
   }, [params.id]);
+
+  console.log("Host Van", hostVanDetail);
 
   return (
     <section>

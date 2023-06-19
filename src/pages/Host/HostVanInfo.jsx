@@ -15,7 +15,9 @@ const HostVanInfo = () => {
       <h4>
         Description: <span>{hostVanDetail.description}</span>
       </h4>
-      <h4>Visibility: Public</h4>
+      <h4>
+        Visibility: <span>Public</span>
+      </h4>
     </section>
   );
 };
