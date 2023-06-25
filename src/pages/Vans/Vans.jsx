@@ -1,20 +1,16 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useLoaderData, useSearchParams } from "react-router-dom";
+import { getVans } from "../../api";
+
+export function loader() {
+  return getVans();
+}
 
 const Vans = () => {
-  const [vansList, setVansList] = useState([]);
+  const vansList = useLoaderData();
+  const [error, setError] = useState(null);
   let [searchParams, setSearchParams] = useSearchParams();
-
-  useEffect(() => {
-    try {
-      fetch("api/vans")
-        .then((res) => res.json())
-        .then((data) => setVansList(data.vans));
-    } catch (error) {
-      console.error;
-    }
-  }, []);
 
   let typeFilter = searchParams.get("type");
 
@@ -50,6 +46,10 @@ const Vans = () => {
       return prevParams;
     });
   };
+
+  if (error) {
+    return <h1>There was an error: {error.message}</h1>;
+  }
 
   return (
     <div className="van-list-container">

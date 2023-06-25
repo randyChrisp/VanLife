@@ -1,6 +1,12 @@
 import React from "react";
-import { useEffect, useState } from "react";
-import { NavLink, Link, Outlet, useParams } from "react-router-dom";
+import { getHostVans } from "../../api";
+import { NavLink, Link, Outlet, useLoaderData } from "react-router-dom";
+import { requireAuth } from "../../utils";
+
+export async function loader({ params }) {
+  await requireAuth();
+  return getHostVans(params.id);
+}
 
 const HostVanDetail = () => {
   const activeStyles = {
@@ -9,20 +15,8 @@ const HostVanDetail = () => {
     color: "#5647B7",
   };
 
-  const [hostVanDetail, setHostVanDetail] = useState({}); //Default was null and caused error, changed to empty object to resolve
-  const params = useParams();
-
-  useEffect(() => {
-    try {
-      fetch(`/api/host/vans/${params.id}`)
-        .then((res) => res.json())
-        .then((data) => setHostVanDetail(data.vans));
-    } catch (error) {
-      console.log(error);
-    }
-  }, [params.id]);
-
-  console.log("Host Van", hostVanDetail);
+  const hostVanDetail = useLoaderData();
+  console.log("Detail", hostVanDetail);
 
   return (
     <section>
@@ -30,20 +24,16 @@ const HostVanDetail = () => {
         &larr; <span>Back to all vans</span>
       </Link>
       <div className="host-van-detail-layout-container">
-        {hostVanDetail ? (
-          <div className="host-van-detail">
-            <img src={hostVanDetail.imageUrl} />
-            <div className="host-van-detail-info-text">
-              <i className={`van-type van-type-${hostVanDetail.type}`}>
-                {hostVanDetail.type}
-              </i>
-              <h3>{hostVanDetail.name}</h3>
-              <h4>${hostVanDetail.price}/day</h4>
-            </div>
+        <div className="host-van-detail">
+          <img src={hostVanDetail.imageUrl} />
+          <div className="host-van-detail-info-text">
+            <i className={`van-type van-type-${hostVanDetail.type}`}>
+              {hostVanDetail.type}
+            </i>
+            <h3>{hostVanDetail.name}</h3>
+            <h4>${hostVanDetail.price}/day</h4>
           </div>
-        ) : (
-          <h2>Loading...</h2>
-        )}
+        </div>
       </div>
       <nav className="host-van-detail-nav">
         <NavLink
