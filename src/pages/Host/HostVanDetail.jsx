@@ -16,7 +16,6 @@ const HostVanDetail = () => {
   };
 
   const hostVanDetail = useLoaderData();
-  console.log("Detail", hostVanDetail);
 
   return (
     <section>
