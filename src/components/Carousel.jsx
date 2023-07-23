@@ -52,7 +52,7 @@ const Carousel = ({ images }) => {
   const slidersVariants = {
     hover: {
       scale: 1.2,
-      backgroundColor: "#ff00008e",
+      backgroundColor: "#ffffff",
     },
   };
   const dotsVariants = {

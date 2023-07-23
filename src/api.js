@@ -48,7 +48,6 @@ export async function getHostVans() {
     ...doc.data(),
     id: doc.id,
   }));
-  console.log("FIREBASE");
   return dataArr;
 }
 
